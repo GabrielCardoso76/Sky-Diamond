@@ -1,0 +1,73 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.map {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    border: 2px solid #333;
+}
+
+.map-row {
+    display: contents;
+}
+
+.tile {
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.path {
+    background-color: #a0d4a0; /* Light green for paths */
+}
+
+.wall {
+    background-color: #5a3a22; /* Brown for walls */
+}
+
+.player {
+    background-color: #ff4136; /* Red for the player */
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.controls {
+    padding-top: 20px;
+}
+
+.controls form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.middle-controls {
+    display: flex;
+    gap: 50px;
+}
+
+.controls button {
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background-color: #eee;
+}

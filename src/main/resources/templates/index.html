@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Bloukemon</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/game.css}" />
 </head>
 <body>
-    <h1>Bem-vindo ao Mundo de Bloukemon!</h1>
+    <h1>Bloukemon</h1>
+    <div class="game-container">
+        <div class="map">
+            <div th:each="row, rowStat : ${map}" class="map-row">
+                <div th:each="tile, colStat : ${row}"
+                     th:classappend="${tile == 1 ? 'wall' : 'path'} + ' ' + (${rowStat.index == playerY and colStat.index == playerX} ? 'player' : '')"
+                     class="tile">
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <form th:action="@{/move}" method="post">
+                <button type="submit" name="direction" value="up">Up</button>
+                <div class="middle-controls">
+                    <button type="submit" name="direction" value="left">Left</button>
+                    <button type="submit" name="direction" value="right">Right</button>
+                </div>
+                <button type="submit" name="direction" value="down">Down</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
