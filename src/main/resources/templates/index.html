@@ -11,19 +11,19 @@
         <div class="map">
             <div th:each="row, rowStat : ${map}" class="map-row">
                 <div th:each="tile, colStat : ${row}"
-                     th:classappend="${tile == 1 ? 'wall' : (tile == 2 ? 'tall-grass' : 'path')} + ' ' + (${rowStat.index == playerY and colStat.index == playerX} ? 'player' : '')"
+                     th:classappend="${tile == 1 ? 'wall' : (tile == 2 ? 'tall-grass' : (tile == 3 ? 'water' : 'path'))} + ' ' + (${rowStat.index == playerY and colStat.index == playerX} ? 'player' : '')"
                      class="tile">
                 </div>
             </div>
         </div>
         <div class="controls">
             <form th:action="@{/move}" method="post">
-                <button type="submit" name="direction" value="up">Up</button>
+                <button type="submit" name="direction" value="up">Cima</button>
                 <div class="middle-controls">
-                    <button type="submit" name="direction" value="left">Left</button>
-                    <button type="submit" name="direction" value="right">Right</button>
+                    <button type="submit" name="direction" value="left">Esquerda</button>
+                    <button type="submit" name="direction" value="right">Direita</button>
                 </div>
-                <button type="submit" name="direction" value="down">Down</button>
+                <button type="submit" name="direction" value="down">Baixo</button>
             </form>
         </div>
     </div>

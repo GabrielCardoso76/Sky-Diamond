@@ -2,25 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bloukemon Battle</title>
+    <title>Batalha Bloukemon</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/game.css}" />
+    <style>
+        .hp-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .hp-bar {
+            height: 100%;
+            background-color: #4caf50; /* Green */
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+        .bloukemon-info {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>A Wild Bloukemon Appears!</h1>
-    <div class="battle-container">
-        <div class="bloukemon-display">
-            <!-- Geometric shape for the wild Bloukemon -->
-            <div class="bloukemon wild"></div>
+    <h1>Um Bloukemon Selvagem Apareceu!</h1>
+
+    <div class="battle-container" th:if="${playerBloukemon != null}">
+        <!-- Wild Bloukemon -->
+        <div class="bloukemon-info">
+            <h3 th:text="${wildBloukemon.name}">Nome do Bloukemon</h3>
+            <div th:classappend="${wildBloukemon.shape}" class="bloukemon"></div>
+            <div class="hp-bar-container">
+                <div class="hp-bar" th:style="'width:' + (${wildBloukemon.hp} * 100 / ${wildBloukemon.maxHp}) + '%;'" th:text="${wildBloukemon.hp} + ' / ' + ${wildBloukemon.maxHp}"></div>
+            </div>
         </div>
-        <div class="bloukemon-display">
-            <!-- Geometric shape for the player's Bloukemon -->
-            <div class="bloukemon player-bloukemon"></div>
+
+        <!-- Player's Bloukemon -->
+        <div class="bloukemon-info">
+            <h3 th:text="${playerBloukemon.name}">Seu Bloukemon</h3>
+            <div th:classappend="${playerBloukemon.shape}" class="bloukemon player-bloukemon"></div>
+            <div class="hp-bar-container">
+                <div class="hp-bar" th:style="'width:' + (${playerBloukemon.hp} * 100 / ${playerBloukemon.maxHp}) + '%;'" th:text="${playerBloukemon.hp} + ' / ' + ${playerBloukemon.maxHp}"></div>
+            </div>
         </div>
     </div>
+
     <div class="controls">
         <form th:action="@{/battle/action}" method="post">
-            <button type="submit" name="action" value="fight">Fight</button>
-            <button type="submit" name="action" value="flee">Flee</button>
+            <div th:if="${!playerBloukemon.isFainted() and !wildBloukemon.isFainted()}">
+                <!-- Botões de Ataque -->
+                <th:block th:each="attack : ${playerBloukemon.attacks}">
+                    <button type="submit" name="action" th:value="${attack.name}" th:title="${attack.description}" th:text="${attack.name}">
+                        Nome do Ataque
+                    </button>
+                </th:block>
+                <!-- Botão de Fugir -->
+                <button type="submit" name="action" value="flee">Fugir</button>
+            </div>
+            <div th:if="${playerBloukemon.isFainted() or wildBloukemon.isFainted()}">
+                <a href="/" class="button">Voltar ao Mapa</a>
+            </div>
         </form>
     </div>
 </body>

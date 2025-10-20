@@ -14,7 +14,7 @@ body {
 
 .map {
     display: grid;
-    grid-template-columns: repeat(10, 40px);
+    grid-template-columns: repeat(20, 30px); /* Adjusted for 20x20 grid */
     border: 2px solid #333;
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 .tile {
-    width: 40px;
-    height: 40px;
+    width: 30px; /* Adjusted for a larger map */
+    height: 30px; /* Adjusted for a larger map */
     box-sizing: border-box;
 }
 
@@ -38,6 +38,10 @@ body {
 
 .tall-grass {
     background-color: #2e8b57; /* Darker green for tall grass */
+}
+
+.water {
+    background-color: #3b82f6; /* Blue for water */
 }
 
 .player {
@@ -99,7 +103,14 @@ body {
 
 .wild {
     background-color: #ffcc00; /* Yellow for wild Bloukemon */
+}
+
+/* Geometric Shapes */
+.triangle {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle */
+}
+.square {
+    /* A square is the default shape */
 }
 
 .player-bloukemon {

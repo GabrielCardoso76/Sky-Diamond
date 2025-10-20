@@ -1,6 +1,5 @@
 package com.example.bloukemon.controller;
 
-import com.example.bloukemon.service.BattleService;
 import com.example.bloukemon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +14,6 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @Autowired
-    private BattleService battleService;
-
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("map", gameService.getMap());
@@ -29,20 +25,6 @@ public class GameController {
     @PostMapping("/move")
     public String move(@RequestParam String direction) {
         gameService.movePlayer(direction);
-        if (gameService.isInBattle()) {
-            return "redirect:/battle";
-        }
-        return "redirect:/";
-    }
-
-    @GetMapping("/battle")
-    public String battle() {
-        return "battle";
-    }
-
-    @PostMapping("/battle/action")
-    public String battleAction(@RequestParam String action) {
-        battleService.handleBattleAction(action);
         return "redirect:/";
     }
 }
