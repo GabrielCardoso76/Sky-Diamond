@@ -14,7 +14,7 @@ body {
 
 .map {
     display: grid;
-    grid-template-columns: repeat(20, 30px); /* Adjusted for 20x20 grid */
+    grid-template-columns: repeat(20, 35px); /* 20 tiles wide */
     border: 2px solid #333;
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 .tile {
-    width: 30px; /* Adjusted for a larger map */
-    height: 30px; /* Adjusted for a larger map */
+    width: 35px;
+    height: 35px;
     box-sizing: border-box;
 }
 
@@ -78,42 +78,4 @@ body {
 
 .controls button:hover {
     background-color: #eee;
-}
-
-.battle-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 20px;
-}
-
-.bloukemon-display {
-    width: 150px;
-    height: 150px;
-    border: 2px solid #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bloukemon {
-    width: 80px;
-    height: 80px;
-}
-
-.wild {
-    background-color: #ffcc00; /* Yellow for wild Bloukemon */
-}
-
-/* Geometric Shapes */
-.triangle {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle */
-}
-.square {
-    /* A square is the default shape */
-}
-
-.player-bloukemon {
-    background-color: #0077cc; /* Blue for player's Bloukemon */
-    border-radius: 50%; /* Circle */
 }

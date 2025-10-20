@@ -17,15 +17,41 @@
             </div>
         </div>
         <div class="controls">
-            <form th:action="@{/move}" method="post">
-                <button type="submit" name="direction" value="up">Cima</button>
+            <form id="move-form" th:action="@{/move}" method="post">
+                <input type="hidden" id="direction-input" name="direction" value="">
+                <button type="submit" onclick="setDirection('up')">Cima</button>
                 <div class="middle-controls">
-                    <button type="submit" name="direction" value="left">Esquerda</button>
-                    <button type="submit" name="direction" value="right">Direita</button>
+                    <button type="submit" onclick="setDirection('left')">Esquerda</button>
+                    <button type="submit" onclick="setDirection('right')">Direita</button>
                 </div>
-                <button type="submit" name="direction" value="down">Baixo</button>
+                <button type="submit" onclick="setDirection('down')">Baixo</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function setDirection(dir) {
+            document.getElementById('direction-input').value = dir;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const key = event.key.toLowerCase();
+            let direction = null;
+            if (key === 'w') {
+                direction = 'up';
+            } else if (key === 'a') {
+                direction = 'left';
+            } else if (key === 's') {
+                direction = 'down';
+            } else if (key === 'd') {
+                direction = 'right';
+            }
+
+            if (direction) {
+                setDirection(direction);
+                document.getElementById('move-form').submit();
+            }
+        });
+    </script>
 </body>
 </html>
