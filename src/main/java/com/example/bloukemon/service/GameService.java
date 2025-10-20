@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
-    private static final int MAP_WIDTH = 10;
+    private static final int MAP_WIDTH = 20;
     private static final int MAP_HEIGHT = 10;
     private static final int WALL = 1;
     private static final int PATH = 0;
@@ -44,20 +44,21 @@ public class GameService {
             map[MAP_HEIGHT - 1][j] = WALL;
         }
 
-        // Add tall grass areas
-        for (int i = 1; i < 8; i++) {
+        // Add tall grass areas (left side)
+        for (int i = 1; i < MAP_HEIGHT - 1; i++) {
             for (int j = 1; j < 8; j++) {
                 map[i][j] = TALL_GRASS;
             }
         }
-        for (int i = 1; i < 8; i++) {
+        // Add tall grass areas (right side)
+        for (int i = 1; i < MAP_HEIGHT - 1; i++) {
             for (int j = 12; j < 19; j++) {
                 map[i][j] = TALL_GRASS;
             }
         }
 
-        // Add water area
-        for (int i = 4; i < 8; i++) {
+        // Add water area (center)
+        for (int i = 4; i < MAP_HEIGHT - 2; i++) {
             for (int j = 8; j < 12; j++) {
                 map[i][j] = WATER;
             }
