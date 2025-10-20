@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Batalha Bloukemon</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/game.css}" />
+</head>
+<body>
+    <h1>Um Bloukemon Selvagem Apareceu!</h1>
+    <div class="battle-container">
+        <div class="bloukemon wild"></div>
+        <div class="bloukemon player-bloukemon"></div>
+    </div>
+    <div class="controls">
+        <form th:action="@{/battle/action}" method="post">
+            <button type="submit" name="action" value="fight">Lutar</button>
+            <button type="submit" name="action" value="flee">Fugir</button>
+        </form>
+    </div>
+</body>
+</html>

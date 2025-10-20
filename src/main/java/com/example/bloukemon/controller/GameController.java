@@ -25,6 +25,23 @@ public class GameController {
     @PostMapping("/move")
     public String move(@RequestParam String direction) {
         gameService.movePlayer(direction);
+        if (gameService.isInBattle()) {
+            return "redirect:/battle";
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/battle")
+    public String battle() {
+        if (!gameService.isInBattle()) {
+            return "redirect:/";
+        }
+        return "battle";
+    }
+
+    @PostMapping("/battle/action")
+    public String battleAction(@RequestParam String action) {
+        gameService.setInBattle(false); // Lógica simples: qualquer ação termina a batalha
         return "redirect:/";
     }
 }
