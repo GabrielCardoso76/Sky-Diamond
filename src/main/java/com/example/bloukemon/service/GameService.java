@@ -9,10 +9,12 @@ public class GameService {
     private static final int MAP_HEIGHT = 10;
     private static final int WALL = 1;
     private static final int PATH = 0;
+    private static final int TALL_GRASS = 2;
 
     private int[][] map;
     private int playerX;
     private int playerY;
+    private boolean inBattle = false;
 
     public GameService() {
         initializeMap();
@@ -39,6 +41,12 @@ public class GameService {
         map[3][5] = WALL;
         map[6][7] = WALL;
         map[7][7] = WALL;
+
+        // Add a patch of tall grass
+        map[5][5] = TALL_GRASS;
+        map[5][6] = TALL_GRASS;
+        map[6][5] = TALL_GRASS;
+        map[6][6] = TALL_GRASS;
     }
 
     public void movePlayer(String direction) {
@@ -63,6 +71,12 @@ public class GameService {
         if (isValidMove(newX, newY)) {
             this.playerX = newX;
             this.playerY = newY;
+
+            if (map[newY][newX] == TALL_GRASS) {
+                if (Math.random() < 0.4) {
+                    inBattle = true;
+                }
+            }
         }
     }
 
@@ -88,5 +102,13 @@ public class GameService {
 
     public int getPlayerY() {
         return playerY;
+    }
+
+    public boolean isInBattle() {
+        return inBattle;
+    }
+
+    public void setInBattle(boolean inBattle) {
+        this.inBattle = inBattle;
     }
 }

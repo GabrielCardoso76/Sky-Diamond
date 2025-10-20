@@ -36,6 +36,10 @@ body {
     background-color: #5a3a22; /* Brown for walls */
 }
 
+.tall-grass {
+    background-color: #2e8b57; /* Darker green for tall grass */
+}
+
 .player {
     background-color: #ff4136; /* Red for the player */
     border-radius: 50%;
@@ -70,4 +74,35 @@ body {
 
 .controls button:hover {
     background-color: #eee;
+}
+
+.battle-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+}
+
+.bloukemon-display {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloukemon {
+    width: 80px;
+    height: 80px;
+}
+
+.wild {
+    background-color: #ffcc00; /* Yellow for wild Bloukemon */
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle */
+}
+
+.player-bloukemon {
+    background-color: #0077cc; /* Blue for player's Bloukemon */
+    border-radius: 50%; /* Circle */
 }

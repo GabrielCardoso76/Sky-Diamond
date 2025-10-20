@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloukemon Battle</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/game.css}" />
+</head>
+<body>
+    <h1>A Wild Bloukemon Appears!</h1>
+    <div class="battle-container">
+        <div class="bloukemon-display">
+            <!-- Geometric shape for the wild Bloukemon -->
+            <div class="bloukemon wild"></div>
+        </div>
+        <div class="bloukemon-display">
+            <!-- Geometric shape for the player's Bloukemon -->
+            <div class="bloukemon player-bloukemon"></div>
+        </div>
+    </div>
+    <div class="controls">
+        <form th:action="@{/battle/action}" method="post">
+            <button type="submit" name="action" value="fight">Fight</button>
+            <button type="submit" name="action" value="flee">Flee</button>
+        </form>
+    </div>
+</body>
+</html>
